@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Web Notes</title>
+  <style>
+    :root{
+      --bg:#f6f8fa; --card:#ffffff; --accent:#2563eb; --muted:#6b7280;
+      --radius:12px;
+    }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#eef2ff, var(--bg));
+      color:#111827;
+      padding:32px;
+    }
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      display:grid;
+      gap:20px;
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    .avatar{
+      width:84px;height:84px;border-radius:12px;flex:0 0 84px;
+      background:linear-gradient(135deg,#dbeafe,#c7f9cc);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#084298;
+    }
+    h1{margin:0;font-size:1.6rem}
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 6px 18px rgba(16,24,40,0.06);
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    pre{
+      background:#0f172a;color:#e6eef8;padding:12px;border-radius:8px;overflow:auto;
+      font-family:monospace;font-size:0.93rem;
+    }
+    code{font-family:monospace;background:#f3f4f6;padding:2px 6px;border-radius:6px;}
+    footer{font-size:0.9rem;color:var(--muted);text-align:center;margin-top:6px}
+    .formula{font-weight:600;color:#0f172a}
+    blockquote{margin:0;padding:12px 16px;border-left:4px solid var(--accent);background:#f8fbff;border-radius:8px}
+    .profile-pics{display:flex;gap:10px;align-items:center}
+    .dog{
+      width:72px;height:72px;border-radius:8px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;
+      border:1px dashed #e5e7eb;color:#374151;font-weight:600;
+    }
+    .muted{color:var(--muted)}
+    .small{font-size:0.9rem}
+    .btn{
+      padding:8px 12px;border-radius:10px;background:var(--accent);color:white;border:none;cursor:pointer;font-weight:600;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="avatar">HHH</div>
+      <div>
+        <h1>My Web Notes</h1>
+        <p class="muted small">Aspiring web developer — enjoy building websites and learning new tech.</p>
+      </div>
+    </header>
+
+    <section class="card" id="about">
+      <h2>About</h2>
+      <p>I enjoy building websites — at first coding felt impossible, but now it's a fun challenge.</p>
+      <p class="small muted">This page demonstrates headings, formulas, code, quotes, and semantic HTML.</p>
+    </section>
+
+    <section class="card grid-2" aria-label="formulas and code">
+      <article>
+        <h3>Formulas</h3>
+        <p class="formula">Water formula: <code>H<sub>2</sub>O</code></p>
+        <p class="formula">Square formula (area): <code>A = s<sup>2</sup></code></p>
+        <p class="small muted">Example: If side <code>s = 5</code> then area <code>A = 25</code>.</p>
+      </article>
+
+      <article>
+        <h3>JavaScript snippet</h3>
+        <pre><code>function welcome(){
+  console.log("hello");
+  alert("Welcome to my web notes!");
+}
+
+// call the function
+welcome();</code></pre>
+        <p class="small muted">Open your browser console to see the <code>console.log</code> message.</p>
+      </article>
+    </section>
+
+    <section class="card" id="text-play">
+      <h3>Text and examples</h3>
+      <p>Here is the word split into characters:</p>
+      <p><strong>h</strong> <strong>e</strong> <strong>l</strong> <strong>l</strong> <strong>o</strong></p>
+
+      <h4>Line quote and blockquote</h4>
+      <p class="small"><em>Line quote:</em> "This is a line quote"</p>
+      <blockquote>
+        <p><strong>Blockquote:</strong> This is a blockquote — use it to show an important passage or citation.</p>
+      </blockquote>
+    </section>
+
+    <section class="card" id="profile">
+      <h3>My profile — dogs</h3>
+      <p class="small muted">Below are placeholders for your dog images or names.</p>
+      <div class="profile-pics">
+        <div class="dog">Dog 1</div>
+        <div class="dog">Dog 2</div>
+        <div class="dog">Dog 3</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>HTML meaning (simple)</h3>
+      <p><strong>HTML</strong> stands for <em>HyperText Markup Language</em>. It describes the structure of web pages using tags like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, and <code>&lt;a&gt;</code>.</p>
+    </section>
+
+    <section class="card">
+      <h3>Quick demo area</h3>
+      <p class="small muted">Try the button to run the JS <code>welcome()</code> function again.</p>
+      <button class="btn" onclick="welcome()">Run welcome()</button>
+    </section>
+
+    <footer class="card">
+      <p style="margin:0">copyright © <span id="year"></span> — My Web Notes</p>
+    </footer>
+  </main>
+
+  <script>
+    // the welcome() function (same as shown in the code block)
+    function welcome(){
+      console.log("hello");
+      // only show the alert once per page load
+      if (!sessionStorage.getItem('welcomed')){
+        alert("Welcome to my web notes!");
+        sessionStorage.setItem('welcomed','1');
+      }
+    }
+
+    // set the year in the footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
